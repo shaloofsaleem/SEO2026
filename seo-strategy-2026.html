@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>The New SEO Game 2026 — Shaloof Saleem</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --bg: #060a0f;
+    --surface: rgba(255,255,255,0.03);
+    --border: rgba(255,255,255,0.07);
+    --text: #f0f4f8;
+    --muted: rgba(255,255,255,0.38);
+    --accent: #84CC16;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Sora', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+    cursor: none;
+  }
+
+  /* Custom cursor */
+  #cursor {
+    width: 12px; height: 12px;
+    background: var(--accent);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s ease, width 0.2s ease, height 0.2s ease, background 0.2s ease;
+    mix-blend-mode: difference;
+  }
+  #cursor-ring {
+    width: 36px; height: 36px;
+    border: 1.5px solid rgba(132,204,22,0.5);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate(-50%, -50%);
+    transition: transform 0.12s ease, width 0.25s ease, height 0.25s ease, border-color 0.2s;
+  }
+  body:has(.level-card:hover) #cursor { width: 20px; height: 20px; }
+
+  /* Background canvas */
+  #bg-canvas {
+    position: fixed; inset: 0;
+    z-index: 0; pointer-events: none;
+  }
+
+  /* Grid overlay */
+  .grid-overlay {
+    position: fixed; inset: 0; z-index: 0; pointer-events: none;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+
+  /* Grain texture */
+  .grain {
+    position: fixed; inset: -50%; z-index: 1; pointer-events: none; opacity: 0.04;
+    width: 200%; height: 200%;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    animation: grain-move 0.4s steps(1) infinite;
+  }
+  @keyframes grain-move {
+    0%,100%{transform:translate(0,0)}10%{transform:translate(-2%,-3%)}20%{transform:translate(3%,2%)}
+    30%{transform:translate(-1%,4%)}40%{transform:translate(2%,-1%)}50%{transform:translate(-3%,1%)}
+    60%{transform:translate(1%,-4%)}70%{transform:translate(-2%,3%)}80%{transform:translate(4%,-2%)}90%{transform:translate(-1%,2%)}
+  }
+
+  /* Wrapper */
+  .wrapper {
+    position: relative; z-index: 2;
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 60px 24px 100px;
+  }
+
+  /* HERO */
+  .hero {
+    text-align: center;
+    margin-bottom: 64px;
+  }
+
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(132,204,22,0.08);
+    border: 1px solid rgba(132,204,22,0.2);
+    border-radius: 99px; padding: 6px 18px;
+    margin-bottom: 24px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; font-weight: 700;
+    color: var(--accent); letter-spacing: 0.1em;
+    animation: fadeDown 0.6s ease both;
+  }
+
+  .pulse-dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--accent);
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%,100%{opacity:1;transform:scale(1)}
+    50%{opacity:0.4;transform:scale(0.7)}
+  }
+
+  .hero h1 {
+    font-size: clamp(36px, 6vw, 72px);
+    font-weight: 900;
+    letter-spacing: -2px;
+    line-height: 1.05;
+    margin-bottom: 18px;
+    animation: fadeDown 0.7s 0.1s ease both;
+  }
+
+  .hero h1 .green {
+    background: linear-gradient(135deg, #84CC16 0%, #22C55E 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero p {
+    color: var(--muted);
+    font-size: 17px;
+    letter-spacing: 0.01em;
+    animation: fadeDown 0.7s 0.2s ease both;
+  }
+
+  /* Progress bar */
+  .progress-wrap {
+    max-width: 480px; margin: 32px auto 0;
+    animation: fadeDown 0.7s 0.3s ease both;
+  }
+  .progress-meta {
+    display: flex; justify-content: space-between;
+    font-size: 12px; color: var(--muted); margin-bottom: 8px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .progress-meta span:last-child { color: var(--accent); font-weight: 700; }
+  .progress-track {
+    height: 5px; border-radius: 99px;
+    background: rgba(255,255,255,0.07);
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%; border-radius: 99px;
+    background: linear-gradient(90deg, #3B82F6, #84CC16);
+    transition: width 0.7s cubic-bezier(0.34,1.56,0.64,1);
+    width: 0%;
+  }
+
+  /* Animations */
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes slideRight {
+    from { opacity: 0; transform: translateX(-20px); }
+    to   { opacity: 1; transform: translateX(0); }
+  }
+  @keyframes slideLeft {
+    from { opacity: 0; transform: translateX(30px); }
+    to   { opacity: 1; transform: translateX(0); }
+  }
+  @keyframes glow-pulse {
+    0%,100%{opacity:0.6} 50%{opacity:1}
+  }
+
+  /* LAYOUT */
+  .layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    transition: grid-template-columns 0.4s ease;
+  }
+  .layout.panel-open {
+    grid-template-columns: 1fr 420px;
+  }
+
+  /* LEVELS LIST */
+  .levels-list { display: flex; flex-direction: column; gap: 0; }
+
+  .connector {
+    width: 2px; height: 18px; margin: 0 auto;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.08), transparent);
+  }
+
+  /* LEVEL CARD */
+  .level-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 18px 22px;
+    cursor: none;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1),
+                border-color 0.3s ease,
+                box-shadow 0.3s ease,
+                background 0.3s ease;
+    opacity: 0;
+    animation: fadeUp 0.5s ease forwards;
+  }
+
+  .level-card::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, var(--card-color, #fff) 0%, transparent 60%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: 16px;
+  }
+
+  .level-card:hover { transform: translateY(-3px) scale(1.01); }
+  .level-card:hover::before { opacity: 0.04; }
+
+  .level-card.active {
+    border-color: var(--card-color);
+    box-shadow: 0 0 40px color-mix(in srgb, var(--card-color) 20%, transparent);
+    transform: translateY(-2px);
+  }
+
+  .level-card.done {
+    background: rgba(132,204,22,0.04);
+    border-color: rgba(132,204,22,0.15);
+  }
+
+  .card-inner {
+    display: flex; align-items: center; gap: 16px;
+    position: relative; z-index: 1;
+  }
+
+  /* Icon */
+  .card-icon {
+    width: 48px; height: 48px; border-radius: 13px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px; flex-shrink: 0;
+    border: 1px solid color-mix(in srgb, var(--card-color) 35%, transparent);
+    background: color-mix(in srgb, var(--card-color) 12%, transparent);
+    transition: transform 0.3s ease;
+  }
+  .level-card:hover .card-icon { transform: scale(1.1) rotate(-3deg); }
+
+  /* Text */
+  .card-text { flex: 1; min-width: 0; }
+  .card-meta {
+    display: flex; align-items: center; gap: 8px;
+    margin-bottom: 4px; flex-wrap: wrap;
+  }
+  .card-lvl {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; color: var(--muted);
+    letter-spacing: 0.05em;
+  }
+  .card-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; font-weight: 700;
+    padding: 2px 7px; border-radius: 4px;
+    background: color-mix(in srgb, var(--card-color) 18%, transparent);
+    color: var(--card-color);
+    letter-spacing: 0.05em;
+    border: 1px solid color-mix(in srgb, var(--card-color) 25%, transparent);
+  }
+  .card-title {
+    font-size: 17px; font-weight: 700; letter-spacing: -0.3px;
+  }
+  .card-desc {
+    font-size: 13px; color: var(--muted);
+    margin-top: 2px; overflow: hidden;
+    text-overflow: ellipsis; white-space: nowrap;
+  }
+
+  /* Check button */
+  .check-btn {
+    width: 32px; height: 32px; border-radius: 50%;
+    border: 1.5px solid rgba(255,255,255,0.18);
+    background: transparent;
+    cursor: none;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; flex-shrink: 0;
+    transition: all 0.25s cubic-bezier(0.34,1.56,0.64,1);
+    color: transparent;
+  }
+  .check-btn:hover { transform: scale(1.15); border-color: rgba(255,255,255,0.4); }
+  .check-btn.checked {
+    background: var(--card-color);
+    border-color: var(--card-color);
+    color: #000;
+    font-weight: 700;
+  }
+
+  /* Shimmer on card hover */
+  .card-shimmer {
+    position: absolute; inset: 0;
+    background: linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.04) 50%, transparent 60%);
+    transform: translateX(-100%);
+    transition: transform 0.5s ease;
+    border-radius: 16px;
+  }
+  .level-card:hover .card-shimmer { transform: translateX(100%); }
+
+  /* DETAIL PANEL */
+  .detail-panel {
+    position: sticky; top: 24px;
+    border-radius: 22px;
+    border: 1px solid rgba(255,255,255,0.08);
+    overflow: hidden;
+    animation: slideLeft 0.4s cubic-bezier(0.34,1.56,0.64,1) both;
+    display: none;
+  }
+  .detail-panel.visible { display: block; }
+
+  .panel-bg {
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg,
+      color-mix(in srgb, var(--panel-color) 8%, #060a0f) 0%,
+      rgba(6,10,15,0.95) 100%);
+    z-index: 0;
+  }
+
+  .panel-content {
+    position: relative; z-index: 1;
+    padding: 28px;
+  }
+
+  .panel-header {
+    display: flex; justify-content: space-between;
+    align-items: flex-start; margin-bottom: 20px;
+  }
+  .panel-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; font-weight: 700;
+    padding: 4px 10px; border-radius: 5px;
+    background: color-mix(in srgb, var(--panel-color) 20%, transparent);
+    color: var(--panel-color);
+    letter-spacing: 0.08em;
+    border: 1px solid color-mix(in srgb, var(--panel-color) 25%, transparent);
+  }
+  .panel-close {
+    width: 30px; height: 30px; border-radius: 8px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.08);
+    color: var(--muted); font-size: 18px;
+    display: flex; align-items: center; justify-content: center;
+    cursor: none; transition: all 0.2s ease;
+  }
+  .panel-close:hover { background: rgba(255,255,255,0.1); color: #fff; }
+
+  .panel-emoji { font-size: 44px; margin-bottom: 10px; display: block;
+    animation: bounce 0.6s cubic-bezier(0.34,1.56,0.64,1) both;
+  }
+  @keyframes bounce {
+    from { transform: scale(0) rotate(-10deg); }
+    to { transform: scale(1) rotate(0deg); }
+  }
+  .panel-title {
+    font-size: 24px; font-weight: 800; letter-spacing: -0.5px;
+    margin-bottom: 8px;
+  }
+  .panel-desc {
+    font-size: 14px; line-height: 1.65;
+    color: rgba(255,255,255,0.55);
+    margin-bottom: 22px;
+  }
+
+  /* Steps label */
+  .steps-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; letter-spacing: 0.1em;
+    color: var(--muted); margin-bottom: 10px;
+    text-transform: uppercase;
+  }
+
+  /* Tips */
+  .tips-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px; }
+  .tip-item {
+    display: flex; align-items: flex-start; gap: 10px;
+    padding: 11px 13px; border-radius: 11px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.05);
+    font-size: 13.5px; line-height: 1.5;
+    color: rgba(255,255,255,0.8);
+    transition: background 0.2s ease, transform 0.2s ease;
+    animation: fadeUp 0.4s ease both;
+  }
+  .tip-item:hover { background: rgba(255,255,255,0.06); transform: translateX(3px); }
+  .tip-arrow { color: var(--panel-color); flex-shrink: 0; font-size: 15px; margin-top: 1px; }
+
+  /* Why box */
+  .why-box {
+    padding: 14px 16px; border-radius: 12px;
+    background: color-mix(in srgb, var(--panel-color) 8%, transparent);
+    border: 1px solid color-mix(in srgb, var(--panel-color) 18%, transparent);
+    margin-bottom: 16px;
+  }
+  .why-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; letter-spacing: 0.1em;
+    color: var(--panel-color); margin-bottom: 6px;
+  }
+  .why-text {
+    font-size: 13.5px; line-height: 1.6;
+    color: rgba(255,255,255,0.65);
+  }
+
+  /* Complete button */
+  .complete-btn {
+    width: 100%; padding: 13px;
+    border-radius: 12px;
+    border: 1.5px solid color-mix(in srgb, var(--panel-color) 35%, transparent);
+    background: transparent;
+    color: rgba(255,255,255,0.45);
+    font-family: 'Sora', sans-serif;
+    font-weight: 700; font-size: 14px;
+    cursor: none; transition: all 0.3s ease;
+    letter-spacing: 0.01em;
+  }
+  .complete-btn:hover {
+    background: color-mix(in srgb, var(--panel-color) 12%, transparent);
+    color: var(--panel-color);
+    transform: translateY(-1px);
+  }
+  .complete-btn.done-btn {
+    background: color-mix(in srgb, var(--panel-color) 18%, transparent);
+    color: var(--panel-color);
+    border-color: var(--panel-color);
+  }
+
+  /* FINISH LINE */
+  .finish-line {
+    margin-top: 20px;
+    text-align: center; padding: 24px;
+    border-radius: 18px;
+    border: 1.5px dashed rgba(132,204,22,0.25);
+    background: rgba(132,204,22,0.03);
+    animation: fadeUp 0.5s 0.6s ease both;
+  }
+  .finish-line .f-emoji { font-size: 32px; margin-bottom: 8px; display: block; }
+  .finish-line .f-title { font-weight: 800; color: var(--accent); font-size: 15px; margin-bottom: 4px; }
+  .finish-line .f-sub { font-size: 13px; color: var(--muted); }
+
+  /* FOOTER */
+  footer {
+    text-align: center; margin-top: 60px;
+    color: rgba(255,255,255,0.15); font-size: 13px;
+    animation: fadeUp 0.5s 0.8s ease both;
+  }
+  footer strong { color: rgba(255,255,255,0.35); }
+  footer a { color: var(--accent); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+
+  /* Confetti canvas */
+  #confetti-canvas {
+    position: fixed; inset: 0;
+    z-index: 999; pointer-events: none;
+  }
+
+  /* Toast */
+  .toast {
+    position: fixed; bottom: 30px; left: 50%;
+    transform: translateX(-50%) translateY(80px);
+    background: rgba(20,26,34,0.95);
+    border: 1px solid rgba(132,204,22,0.3);
+    color: #fff; padding: 12px 24px; border-radius: 99px;
+    font-size: 14px; font-weight: 600;
+    z-index: 1000; transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+  }
+  .toast.show { transform: translateX(-50%) translateY(0); }
+
+  /* Responsive */
+  @media (max-width: 760px) {
+    .layout.panel-open { grid-template-columns: 1fr; }
+    .detail-panel.visible { position: relative; top: 0; margin-top: 16px; }
+    body { cursor: auto; }
+    #cursor, #cursor-ring { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<canvas id="bg-canvas"></canvas>
+<div class="grid-overlay"></div>
+<div class="grain"></div>
+<canvas id="confetti-canvas"></canvas>
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+
+<div class="toast" id="toast"></div>
+
+<div class="wrapper">
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero-badge">
+      <div class="pulse-dot"></div>
+      SEO STRATEGY 2026 — SHALOOF SALEEM
+    </div>
+    <h1>The <span class="green">"New SEO"</span> Game</h1>
+    <p>Search Everywhere Optimisation &mdash; 9 Levels to Master in 2026</p>
+
+    <div class="progress-wrap">
+      <div class="progress-meta">
+        <span>Your Progress</span>
+        <span id="progress-text">0 / 9 levels</span>
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill" id="progress-fill"></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN LAYOUT -->
+  <div class="layout" id="layout">
+
+    <!-- LEVELS -->
+    <div class="levels-list" id="levels-list"></div>
+
+    <!-- DETAIL PANEL -->
+    <div class="detail-panel" id="detail-panel">
+      <div class="panel-bg" id="panel-bg"></div>
+      <div class="panel-content">
+        <div class="panel-header">
+          <span class="panel-tag" id="p-tag"></span>
+          <button class="panel-close" id="panel-close">×</button>
+        </div>
+        <span class="panel-emoji" id="p-emoji"></span>
+        <div class="panel-title" id="p-title"></div>
+        <div class="panel-desc" id="p-desc"></div>
+        <div class="steps-label">ACTION STEPS</div>
+        <div class="tips-list" id="p-tips"></div>
+        <div class="why-box">
+          <div class="why-label">WHY IT MATTERS</div>
+          <div class="why-text" id="p-why"></div>
+        </div>
+        <button class="complete-btn" id="p-complete-btn">Mark as Complete</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- FINISH -->
+  <div class="finish-line">
+    <span class="f-emoji">🏁</span>
+    <div class="f-title">Topic Domination — Final Level</div>
+    <div class="f-sub">Click any level card to explore its full strategy</div>
+  </div>
+
+  <footer>
+    Built by <strong>Shaloof Saleem</strong> &nbsp;·&nbsp;
+    WordPress Developer &amp; SEO Specialist &nbsp;·&nbsp; Dubai, UAE &nbsp;·&nbsp;
+    <a href="https://shaloofsaleem.in" target="_blank">shaloofsaleem.in</a>
+  </footer>
+</div>
+
+<script>
+// ─── DATA ───────────────────────────────────────────────────────────────────
+const levels = [
+  {
+    id:1, emoji:"🔧", title:"Traditional SEO", tag:"FOUNDATION", color:"#3B82F6",
+    desc:"Your starting point. Without this, nothing else works.",
+    tips:[
+      "Fix broken links, crawl errors & slow page speed",
+      "Research keywords with real buyer intent",
+      "Write optimised titles, meta descriptions & headers",
+      "Earn quality backlinks through PR & outreach"
+    ],
+    why:"Google still drives 90%+ of organic traffic. Nail the basics first before moving to advanced levels."
+  },
+  {
+    id:2, emoji:"🤖", title:"AI Search Optimisation", tag:"NEW IN 2026", color:"#F97316",
+    desc:"ChatGPT, Perplexity & Google AI now answer searches directly.",
+    tips:[
+      "Write in clear Q&A format — AI loves structured answers",
+      "Use headers, bullet points & concise paragraphs",
+      "Add schema markup so machines understand your content",
+      "Test how your brand appears inside AI search tools"
+    ],
+    why:"AI Overviews now appear on 30%+ of Google searches. Format for machines or get overlooked entirely."
+  },
+  {
+    id:3, emoji:"💰", title:"Paid Search Visibility", tag:"ACCELERATOR", color:"#22C55E",
+    desc:"Instant visibility while organic rankings build over time.",
+    tips:[
+      "Run Google Ads for high-intent 'buy now' keywords",
+      "Use YouTube ads to capture video search traffic",
+      "Target competitor brand terms strategically",
+      "Track cost-per-lead, not just clicks or impressions"
+    ],
+    why:"Paid + organic together = 2× more SERP real estate. Dominate the whole first page, not just half."
+  },
+  {
+    id:4, emoji:"🧠", title:"LLM Answer SEO", tag:"ADVANCED", color:"#A855F7",
+    desc:"Get cited by ChatGPT, Claude & Gemini when users ask questions.",
+    tips:[
+      "Publish deep, well-researched authoritative content",
+      "Build a comprehensive knowledge base in your niche",
+      "Get cited by trusted industry publications",
+      "Monitor where your brand appears in AI answers"
+    ],
+    why:"LLMs recommend brands they've seen cited and mentioned repeatedly across the web. Be that brand."
+  },
+  {
+    id:5, emoji:"⭐", title:"Brand Authority SEO", tag:"TRUST BUILDER", color:"#EF4444",
+    desc:"Your brand name itself becomes a Google ranking signal.",
+    tips:[
+      "Get mentioned in industry blogs, even without a link",
+      "Appear in expert roundups and 'best of' lists",
+      "Encourage reviews on Google, Trustpilot & Clutch",
+      "Track brand mention volume with tools like Mention"
+    ],
+    why:"Google measures branded search volume as a trust signal — more people searching your brand = higher rankings."
+  },
+  {
+    id:6, emoji:"👥", title:"Community SEO", tag:"ORGANIC REACH", color:"#06B6D4",
+    desc:"Reddit and Quora threads now rank on page 1 of Google.",
+    tips:[
+      "Answer questions genuinely on Reddit & Quora",
+      "Join niche Discord servers and Slack communities",
+      "Share expertise in LinkedIn Groups in your industry",
+      "Build reputation first — links and traffic follow"
+    ],
+    why:"Community content ranks because real people find it helpful — and Google rewards genuine usefulness over tactics."
+  },
+  {
+    id:7, emoji:"🪂", title:"Parasite SEO", tag:"SHORTCUT", color:"#F59E0B",
+    desc:"Borrow authority from big platforms to rank faster.",
+    tips:[
+      "Publish on LinkedIn Articles, Medium & Substack",
+      "Guest post on high-authority websites in your niche",
+      "Create YouTube videos targeting written-search queries",
+      "Repurpose blog posts as newsletter content that ranks"
+    ],
+    why:"New sites take 6–12 months to rank organically. Parasite SEO on trusted platforms gets you visible in weeks."
+  },
+  {
+    id:8, emoji:"📱", title:"Platform-Specific SEO", tag:"MULTI-CHANNEL", color:"#EC4899",
+    desc:"Every platform has its own search algorithm — learn each one.",
+    tips:[
+      "Optimise product listings for Amazon A9 algorithm",
+      "Use YouTube SEO: titles, chapters & transcripts",
+      "TikTok ranks by watch time & shares — not just hashtags",
+      "App Store Optimisation for mobile apps & extensions"
+    ],
+    why:"Over 40% of Gen Z starts product searches on TikTok, not Google. Meet your audience where they actually search."
+  },
+  {
+    id:9, emoji:"🏆", title:"Topic Domination", tag:"FINAL BOSS", color:"#84CC16",
+    desc:"When people think of your topic — they think of YOU.",
+    tips:[
+      "Create content pillars covering every angle of your niche",
+      "Publish consistently across all platforms simultaneously",
+      "Build internal linking webs that reinforce your authority",
+      "Become the source others cite, quote and reference"
+    ],
+    why:"Topic authority is the compounding interest of SEO — it grows every single month without extra effort."
+  }
+];
+
+// ─── STATE ────────────────────────────────────────────────────────────────
+let activeId = null;
+const completed = new Set();
+
+// ─── CUSTOM CURSOR ────────────────────────────────────────────────────────
+const cursor = document.getElementById('cursor');
+const ring = document.getElementById('cursor-ring');
+let mx = -100, my = -100, rx = -100, ry = -100;
+
+document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+
+(function animateCursor() {
+  cursor.style.left = mx + 'px';
+  cursor.style.top  = my + 'px';
+  rx += (mx - rx) * 0.12;
+  ry += (my - ry) * 0.12;
+  ring.style.left = rx + 'px';
+  ring.style.top  = ry + 'px';
+  requestAnimationFrame(animateCursor);
+})();
+
+// ─── BACKGROUND PARTICLES ─────────────────────────────────────────────────
+const canvas = document.getElementById('bg-canvas');
+const ctx = canvas.getContext('2d');
+let W, H, particles = [];
+
+function resize() {
+  W = canvas.width  = window.innerWidth;
+  H = canvas.height = window.innerHeight;
+}
+resize();
+window.addEventListener('resize', resize);
+
+for (let i = 0; i < 60; i++) {
+  particles.push({
+    x: Math.random() * 2000, y: Math.random() * 1200,
+    r: Math.random() * 1.5 + 0.3,
+    vx: (Math.random() - 0.5) * 0.2,
+    vy: (Math.random() - 0.5) * 0.15,
+    alpha: Math.random() * 0.4 + 0.1
+  });
+}
+
+function drawBg() {
+  ctx.clearRect(0, 0, W, H);
+  particles.forEach(p => {
+    p.x += p.vx; p.y += p.vy;
+    if (p.x < 0) p.x = W; if (p.x > W) p.x = 0;
+    if (p.y < 0) p.y = H; if (p.y > H) p.y = 0;
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(132,204,22,${p.alpha})`;
+    ctx.fill();
+  });
+  requestAnimationFrame(drawBg);
+}
+drawBg();
+
+// ─── BUILD CARDS ─────────────────────────────────────────────────────────
+const listEl = document.getElementById('levels-list');
+
+levels.forEach((lv, i) => {
+  // Card
+  const card = document.createElement('div');
+  card.className = 'level-card';
+  card.id = `card-${lv.id}`;
+  card.style.setProperty('--card-color', lv.color);
+  card.style.animationDelay = (i * 0.07) + 's';
+
+  card.innerHTML = `
+    <div class="card-shimmer"></div>
+    <div class="card-inner">
+      <div class="card-icon" id="icon-${lv.id}">${lv.emoji}</div>
+      <div class="card-text">
+        <div class="card-meta">
+          <span class="card-lvl">LVL ${String(lv.id).padStart(2,'0')}</span>
+          <span class="card-tag">${lv.tag}</span>
+        </div>
+        <div class="card-title">${lv.title}</div>
+        <div class="card-desc">${lv.desc}</div>
+      </div>
+      <button class="check-btn" id="chk-${lv.id}" title="Mark complete">✓</button>
+    </div>
+  `;
+
+  card.addEventListener('click', (e) => {
+    if (e.target.closest('.check-btn')) return;
+    openPanel(lv.id);
+  });
+
+  document.getElementById && card.querySelector('.check-btn').addEventListener('click', (e) => {
+    e.stopPropagation();
+    toggleDone(lv.id);
+  });
+
+  listEl.appendChild(card);
+
+  // Connector
+  if (i < levels.length - 1) {
+    const conn = document.createElement('div');
+    conn.className = 'connector';
+    listEl.appendChild(conn);
+  }
+});
+
+// ─── PANEL ELEMENTS ──────────────────────────────────────────────────────
+const panel     = document.getElementById('detail-panel');
+const panelBg   = document.getElementById('panel-bg');
+const layout    = document.getElementById('layout');
+const pTag      = document.getElementById('p-tag');
+const pEmoji    = document.getElementById('p-emoji');
+const pTitle    = document.getElementById('p-title');
+const pDesc     = document.getElementById('p-desc');
+const pTips     = document.getElementById('p-tips');
+const pWhy      = document.getElementById('p-why');
+const pBtn      = document.getElementById('p-complete-btn');
+const pClose    = document.getElementById('panel-close');
+
+pClose.addEventListener('click', closePanel);
+
+function openPanel(id) {
+  const lv = levels.find(l => l.id === id);
+  if (!lv) return;
+  activeId = id;
+
+  // Update cards
+  document.querySelectorAll('.level-card').forEach(c => c.classList.remove('active'));
+  document.getElementById(`card-${id}`).classList.add('active');
+
+  // Fill panel
+  panel.style.setProperty('--panel-color', lv.color);
+  panelBg.style.background = `linear-gradient(135deg, color-mix(in srgb, ${lv.color} 8%, #060a0f) 0%, rgba(6,10,15,0.97) 100%)`;
+  pTag.textContent = lv.tag;
+  pTag.style.background = `color-mix(in srgb, ${lv.color} 18%, transparent)`;
+  pTag.style.color = lv.color;
+  pTag.style.borderColor = `color-mix(in srgb, ${lv.color} 25%, transparent)`;
+  pEmoji.textContent = lv.emoji;
+  pTitle.textContent = `Level ${lv.id}: ${lv.title}`;
+  pDesc.textContent = lv.desc;
+  pWhy.textContent = lv.why;
+
+  pTips.innerHTML = '';
+  lv.tips.forEach((tip, i) => {
+    const div = document.createElement('div');
+    div.className = 'tip-item';
+    div.style.animationDelay = (i * 0.08) + 's';
+    div.innerHTML = `<span class="tip-arrow" style="color:${lv.color}">→</span><span>${tip}</span>`;
+    pTips.appendChild(div);
+  });
+
+  updatePanelBtn(id);
+
+  panel.classList.add('visible');
+  layout.classList.add('panel-open');
+
+  // Reset emoji animation
+  pEmoji.style.animation = 'none';
+  requestAnimationFrame(() => { pEmoji.style.animation = ''; });
+}
+
+function closePanel() {
+  activeId = null;
+  panel.classList.remove('visible');
+  layout.classList.remove('panel-open');
+  document.querySelectorAll('.level-card').forEach(c => c.classList.remove('active'));
+}
+
+function updatePanelBtn(id) {
+  if (!id) return;
+  const done = completed.has(id);
+  pBtn.textContent = done ? '✓ Level Complete!' : 'Mark as Complete';
+  pBtn.className = 'complete-btn' + (done ? ' done-btn' : '');
+  pBtn.onclick = () => toggleDone(id);
+  const lv = levels.find(l => l.id === id);
+  pBtn.style.setProperty('--panel-color', lv.color);
+}
+
+function toggleDone(id) {
+  const lv = levels.find(l => l.id === id);
+  const card = document.getElementById(`card-${id}`);
+  const chk  = document.getElementById(`chk-${id}`);
+  const icon = document.getElementById(`icon-${id}`);
+
+  if (completed.has(id)) {
+    completed.delete(id);
+    card.classList.remove('done');
+    chk.classList.remove('checked');
+    icon.textContent = lv.emoji;
+    showToast(`Level ${id} marked incomplete`);
+  } else {
+    completed.add(id);
+    card.classList.add('done');
+    chk.classList.add('checked');
+    chk.style.background = lv.color;
+    chk.style.borderColor = lv.color;
+    icon.textContent = '✅';
+    showToast(`🎉 Level ${id} complete!`);
+    if (completed.size === 9) {
+      setTimeout(fireConfetti, 300);
+      showToast('🏆 All 9 levels completed! SEO Master!');
+    }
+  }
+
+  updateProgress();
+  if (activeId === id) updatePanelBtn(id);
+}
+
+function updateProgress() {
+  const n = completed.size;
+  document.getElementById('progress-text').textContent = `${n} / 9 levels`;
+  document.getElementById('progress-fill').style.width = `${(n/9)*100}%`;
+}
+
+// ─── TOAST ────────────────────────────────────────────────────────────────
+let toastTimer;
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 2800);
+}
+
+// ─── CONFETTI ─────────────────────────────────────────────────────────────
+function fireConfetti() {
+  const cc = document.getElementById('confetti-canvas');
+  cc.width = window.innerWidth; cc.height = window.innerHeight;
+  const cCtx = cc.getContext('2d');
+  const bits = Array.from({length: 140}, () => ({
+    x: Math.random() * cc.width,
+    y: -10,
+    vx: (Math.random()-0.5)*4,
+    vy: Math.random()*5+2,
+    rot: Math.random()*360,
+    vr: (Math.random()-0.5)*8,
+    w: Math.random()*10+5,
+    h: Math.random()*6+3,
+    color: ['#84CC16','#3B82F6','#F97316','#A855F7','#EF4444','#22C55E','#F59E0B'][Math.floor(Math.random()*7)]
+  }));
+  let frame = 0;
+  function tick() {
+    cCtx.clearRect(0,0,cc.width,cc.height);
+    bits.forEach(b => {
+      b.x+=b.vx; b.y+=b.vy; b.rot+=b.vr; b.vy+=0.08;
+      cCtx.save(); cCtx.translate(b.x,b.y); cCtx.rotate(b.rot*Math.PI/180);
+      cCtx.fillStyle = b.color; cCtx.globalAlpha = Math.max(0, 1-(frame/120));
+      cCtx.fillRect(-b.w/2,-b.h/2,b.w,b.h);
+      cCtx.restore();
+    });
+    frame++;
+    if (frame < 130) requestAnimationFrame(tick);
+    else cCtx.clearRect(0,0,cc.width,cc.height);
+  }
+  tick();
+}
+
+// ─── SCROLL REVEAL ───────────────────────────────────────────────────────
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.style.animationPlayState = 'running';
+      io.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.level-card').forEach(c => {
+  c.style.animationPlayState = 'paused';
+  io.observe(c);
+});
+</script>
+</body>
+</html>

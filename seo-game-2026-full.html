@@ -1,0 +1,1142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>The New SEO Game 2026 — Full Strategy Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+
+:root{
+  --bg:#04080d;
+  --card-bg:rgba(255,255,255,0.028);
+  --border:rgba(255,255,255,0.07);
+  --text:#eef2f7;
+  --muted:rgba(255,255,255,0.4);
+  --accent:#84CC16;
+  --font:'Outfit',sans-serif;
+  --mono:'JetBrains Mono',monospace;
+}
+
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:var(--font);
+  overflow-x:hidden;
+  min-height:100vh;
+}
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:rgba(132,204,22,0.3);border-radius:2px}
+
+/* ── BACKGROUND ── */
+#bg-wrap{
+  position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;
+}
+.orb{
+  position:absolute;border-radius:50%;
+  filter:blur(130px);opacity:0.09;
+}
+.orb1{width:700px;height:700px;top:-200px;left:-200px;background:#3B82F6}
+.orb2{width:600px;height:600px;bottom:-150px;right:-150px;background:#84CC16}
+.orb3{width:400px;height:400px;top:50%;left:50%;transform:translate(-50%,-50%);background:#A855F7}
+.grid-bg{
+  position:absolute;inset:0;
+  background-image:linear-gradient(rgba(255,255,255,0.018) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,0.018) 1px,transparent 1px);
+  background-size:52px 52px;
+}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  height:64px;
+  background:rgba(4,8,13,0.8);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 32px;
+  transform:translateY(-100%);
+  animation:navIn 0.6s 0.3s ease forwards;
+}
+@keyframes navIn{to{transform:translateY(0)}}
+.nav-logo{
+  font-weight:800;font-size:16px;letter-spacing:-0.3px;
+  display:flex;align-items:center;gap:10px;
+}
+.nav-logo .dot{
+  width:8px;height:8px;border-radius:50%;
+  background:var(--accent);
+  animation:pulse-nav 2s infinite;
+}
+@keyframes pulse-nav{0%,100%{box-shadow:0 0 0 0 rgba(132,204,22,0.6)}50%{box-shadow:0 0 0 8px rgba(132,204,22,0)}}
+.nav-links{
+  display:flex;align-items:center;gap:6px;
+  flex-wrap:wrap;
+}
+.nav-link{
+  font-size:12px;font-weight:600;
+  padding:5px 12px;border-radius:99px;
+  background:transparent;border:1px solid transparent;
+  color:var(--muted);cursor:pointer;transition:all 0.2s ease;
+  font-family:var(--font);
+  text-decoration:none;
+}
+.nav-link:hover{color:var(--text);border-color:var(--border);background:rgba(255,255,255,0.04)}
+
+/* ── HERO ── */
+.hero{
+  position:relative;z-index:1;
+  min-height:100vh;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  text-align:center;
+  padding:100px 24px 80px;
+}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(132,204,22,0.08);
+  border:1px solid rgba(132,204,22,0.22);
+  border-radius:99px;padding:7px 20px;
+  margin-bottom:28px;
+  font-family:var(--mono);font-size:11px;font-weight:700;
+  color:var(--accent);letter-spacing:0.1em;
+  opacity:0;animation:fadeUp 0.7s 0.4s ease forwards;
+}
+.live-dot{
+  width:7px;height:7px;border-radius:50%;
+  background:var(--accent);
+  animation:pulse-nav 2s infinite;
+}
+.hero-title{
+  font-size:clamp(42px,7vw,88px);
+  font-weight:900;letter-spacing:-3px;line-height:1.0;
+  margin-bottom:20px;
+  opacity:0;animation:fadeUp 0.8s 0.5s ease forwards;
+}
+.hero-title .line2{
+  display:block;
+  background:linear-gradient(135deg,#84CC16 0%,#22C55E 40%,#3B82F6 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  background-size:200% 200%;
+  animation:gradShift 4s ease infinite;
+}
+@keyframes gradShift{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+.hero-sub{
+  font-size:18px;color:var(--muted);line-height:1.6;max-width:560px;
+  margin-bottom:40px;
+  opacity:0;animation:fadeUp 0.8s 0.65s ease forwards;
+}
+.hero-stats{
+  display:flex;gap:32px;justify-content:center;flex-wrap:wrap;
+  margin-bottom:48px;
+  opacity:0;animation:fadeUp 0.8s 0.75s ease forwards;
+}
+.stat{text-align:center}
+.stat-num{
+  font-size:32px;font-weight:900;letter-spacing:-1px;
+  background:linear-gradient(135deg,#84CC16,#22C55E);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.stat-label{font-size:12px;color:var(--muted);margin-top:2px;font-family:var(--mono)}
+.hero-cta{
+  display:inline-flex;align-items:center;gap:10px;
+  background:linear-gradient(135deg,#84CC16,#22C55E);
+  color:#000;font-weight:800;font-size:15px;
+  padding:14px 32px;border-radius:99px;
+  border:none;cursor:pointer;
+  text-decoration:none;
+  transition:transform 0.3s cubic-bezier(0.34,1.56,0.64,1),box-shadow 0.3s ease;
+  box-shadow:0 0 40px rgba(132,204,22,0.3);
+  opacity:0;animation:fadeUp 0.8s 0.85s ease forwards;
+}
+.hero-cta:hover{transform:translateY(-3px) scale(1.03);box-shadow:0 0 60px rgba(132,204,22,0.5)}
+.cta-arrow{transition:transform 0.3s ease}
+.hero-cta:hover .cta-arrow{transform:translateX(4px)}
+
+/* Scroll indicator */
+.scroll-hint{
+  position:absolute;bottom:32px;left:50%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:8px;
+  opacity:0;animation:fadeUp 1s 1.2s ease forwards;
+}
+.scroll-hint span{font-size:11px;color:var(--muted);font-family:var(--mono);letter-spacing:0.1em}
+.scroll-arrow{
+  width:24px;height:36px;border:1.5px solid rgba(255,255,255,0.15);
+  border-radius:12px;display:flex;align-items:flex-start;justify-content:center;
+  padding-top:6px;
+}
+.scroll-dot{
+  width:4px;height:8px;background:var(--accent);border-radius:2px;
+  animation:scrollBob 1.6s ease infinite;
+}
+@keyframes scrollBob{0%,100%{transform:translateY(0);opacity:1}50%{transform:translateY(10px);opacity:0.3}}
+
+/* ── SECTION ── */
+section{position:relative;z-index:1;padding:80px 24px}
+.section-inner{max-width:1100px;margin:0 auto}
+.section-label{
+  font-family:var(--mono);font-size:11px;font-weight:700;
+  color:var(--accent);letter-spacing:0.15em;
+  text-transform:uppercase;margin-bottom:12px;
+  display:flex;align-items:center;gap:10px;
+}
+.section-label::before{
+  content:'';width:24px;height:1px;background:var(--accent);
+}
+.section-title{
+  font-size:clamp(28px,4vw,44px);font-weight:900;
+  letter-spacing:-1px;line-height:1.1;margin-bottom:14px;
+}
+.section-desc{font-size:16px;color:var(--muted);line-height:1.7;max-width:600px;margin-bottom:56px}
+
+/* ── PROGRESS TRACKER ── */
+.progress-tracker{
+  background:rgba(255,255,255,0.02);
+  border:1px solid var(--border);
+  border-radius:20px;padding:28px 32px;
+  margin-bottom:56px;
+  display:flex;align-items:center;gap:24px;flex-wrap:wrap;
+}
+.tracker-left{flex:1;min-width:200px}
+.tracker-title{font-weight:700;font-size:16px;margin-bottom:4px}
+.tracker-sub{font-size:13px;color:var(--muted)}
+.tracker-bar-wrap{flex:2;min-width:260px}
+.tracker-meta{
+  display:flex;justify-content:space-between;
+  font-size:12px;color:var(--muted);
+  font-family:var(--mono);margin-bottom:10px;
+}
+.tracker-count{color:var(--accent)!important;font-weight:700}
+.tracker-bar{height:8px;background:rgba(255,255,255,0.06);border-radius:99px;overflow:hidden}
+.tracker-fill{
+  height:100%;border-radius:99px;
+  background:linear-gradient(90deg,#3B82F6 0%,#84CC16 100%);
+  width:0%;transition:width 0.8s cubic-bezier(0.34,1.56,0.64,1);
+  position:relative;overflow:hidden;
+}
+.tracker-fill::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,0.3),transparent);
+  animation:shimmerBar 2s infinite;
+}
+@keyframes shimmerBar{from{transform:translateX(-100%)}to{transform:translateX(100%)}}
+.tracker-badges{
+  display:flex;gap:8px;flex-wrap:wrap;margin-top:14px;
+}
+.lvl-badge{
+  font-family:var(--mono);font-size:10px;font-weight:700;
+  padding:4px 10px;border-radius:6px;
+  background:rgba(255,255,255,0.04);
+  border:1px solid rgba(255,255,255,0.08);
+  color:var(--muted);
+  cursor:pointer;transition:all 0.2s ease;
+}
+.lvl-badge.complete{
+  background:rgba(132,204,22,0.12);
+  border-color:rgba(132,204,22,0.3);
+  color:var(--accent);
+}
+
+/* ── LEVEL CARDS (full expanded) ── */
+.levels-grid{display:flex;flex-direction:column;gap:0}
+
+.level-item{
+  display:flex;gap:0;
+  opacity:0;
+  transform:translateY(30px);
+  transition:opacity 0.6s ease,transform 0.6s ease;
+}
+.level-item.visible{opacity:1;transform:translateY(0)}
+
+/* Timeline line */
+.timeline-col{
+  display:flex;flex-direction:column;align-items:center;
+  width:72px;flex-shrink:0;
+}
+.tl-num{
+  width:52px;height:52px;border-radius:14px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:22px;flex-shrink:0;
+  border:2px solid var(--lv-color, #fff);
+  background:color-mix(in srgb,var(--lv-color,#fff) 12%,transparent);
+  position:relative;z-index:1;
+  transition:transform 0.3s cubic-bezier(0.34,1.56,0.64,1),box-shadow 0.3s ease;
+}
+.level-item:hover .tl-num{
+  transform:scale(1.1) rotate(-5deg);
+  box-shadow:0 0 30px color-mix(in srgb,var(--lv-color,#fff) 35%,transparent);
+}
+.tl-line{
+  flex:1;width:2px;min-height:24px;
+  background:linear-gradient(to bottom,var(--lv-color,rgba(255,255,255,0.1)),rgba(255,255,255,0.04));
+  opacity:0.3;margin:4px 0;
+}
+
+/* Card body */
+.lv-card{
+  flex:1;
+  background:var(--card-bg);
+  border:1px solid var(--border);
+  border-radius:20px;
+  margin-bottom:16px;
+  overflow:hidden;
+  transition:border-color 0.3s ease,box-shadow 0.3s ease,transform 0.3s cubic-bezier(0.34,1.56,0.64,1);
+  position:relative;
+}
+.lv-card:hover{
+  border-color:color-mix(in srgb,var(--lv-color,#fff) 30%,transparent);
+  box-shadow:0 8px 40px color-mix(in srgb,var(--lv-color,#fff) 10%,transparent);
+  transform:translateX(4px);
+}
+.lv-card.done-card{
+  border-color:rgba(132,204,22,0.2);
+  background:rgba(132,204,22,0.03);
+}
+
+/* Card top accent bar */
+.card-accent{
+  height:3px;
+  background:linear-gradient(90deg,var(--lv-color,#fff),transparent);
+}
+
+/* Card header */
+.card-head{
+  padding:22px 26px 0;
+  display:flex;align-items:flex-start;justify-content:space-between;gap:16px;
+  flex-wrap:wrap;
+}
+.head-left{}
+.head-meta{
+  display:flex;align-items:center;gap:8px;margin-bottom:8px;flex-wrap:wrap;
+}
+.lv-num-label{
+  font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:0.05em;
+}
+.lv-tag{
+  font-family:var(--mono);font-size:10px;font-weight:700;
+  padding:3px 9px;border-radius:5px;
+  background:color-mix(in srgb,var(--lv-color,#fff) 15%,transparent);
+  color:var(--lv-color,#fff);
+  border:1px solid color-mix(in srgb,var(--lv-color,#fff) 22%,transparent);
+  letter-spacing:0.06em;
+}
+.card-title-row{
+  display:flex;align-items:center;gap:12px;
+}
+.card-emoji{font-size:28px;line-height:1}
+.card-title{
+  font-size:22px;font-weight:800;letter-spacing:-0.5px;
+}
+.card-tagline{
+  font-size:14px;color:var(--muted);margin-top:4px;line-height:1.5;
+}
+.complete-toggle{
+  display:flex;align-items:center;gap:8px;
+  background:rgba(255,255,255,0.04);
+  border:1px solid rgba(255,255,255,0.1);
+  border-radius:99px;padding:7px 14px;
+  cursor:pointer;font-family:var(--font);
+  font-size:13px;font-weight:600;color:var(--muted);
+  transition:all 0.3s cubic-bezier(0.34,1.56,0.64,1);
+  white-space:nowrap;flex-shrink:0;
+}
+.complete-toggle:hover{
+  background:rgba(255,255,255,0.07);color:var(--text);
+  transform:scale(1.03);
+}
+.complete-toggle.toggled{
+  background:rgba(132,204,22,0.12);
+  border-color:rgba(132,204,22,0.3);
+  color:var(--accent);
+}
+.toggle-circle{
+  width:18px;height:18px;border-radius:50%;
+  border:1.5px solid rgba(255,255,255,0.2);
+  display:flex;align-items:center;justify-content:center;
+  font-size:11px;font-weight:700;
+  transition:all 0.3s ease;
+}
+.complete-toggle.toggled .toggle-circle{
+  background:var(--accent);border-color:var(--accent);color:#000;
+}
+
+/* Card body content */
+.card-body{padding:20px 26px 24px;display:grid;grid-template-columns:1fr 1fr;gap:24px}
+@media(max-width:640px){.card-body{grid-template-columns:1fr}}
+
+/* What section */
+.what-section{}
+.sub-label{
+  font-family:var(--mono);font-size:10px;font-weight:700;
+  color:var(--muted);letter-spacing:0.1em;
+  margin-bottom:12px;text-transform:uppercase;
+  display:flex;align-items:center;gap:6px;
+}
+.sub-label::before{
+  content:'';width:12px;height:1px;
+  background:color-mix(in srgb,var(--lv-color,#fff) 60%,transparent);
+}
+.what-text{
+  font-size:14px;line-height:1.7;
+  color:rgba(255,255,255,0.65);
+}
+
+/* Steps */
+.steps-list{display:flex;flex-direction:column;gap:9px}
+.step-item{
+  display:flex;align-items:flex-start;gap:10px;
+  padding:10px 13px;border-radius:11px;
+  background:rgba(255,255,255,0.025);
+  border:1px solid rgba(255,255,255,0.05);
+  font-size:13.5px;line-height:1.5;
+  color:rgba(255,255,255,0.78);
+  transition:background 0.2s ease,transform 0.2s ease,border-color 0.2s ease;
+}
+.step-item:hover{
+  background:rgba(255,255,255,0.05);
+  transform:translateX(3px);
+  border-color:color-mix(in srgb,var(--lv-color,#fff) 20%,transparent);
+}
+.step-arrow{
+  color:var(--lv-color,#fff);
+  font-size:14px;flex-shrink:0;margin-top:1px;font-weight:700;
+}
+
+/* Why & Tools row */
+.card-footer{
+  padding:0 26px 24px;
+  display:grid;grid-template-columns:1fr 1fr;gap:16px;
+}
+@media(max-width:640px){.card-footer{grid-template-columns:1fr}}
+
+.why-box,.tools-box{
+  padding:14px 16px;border-radius:13px;
+}
+.why-box{
+  background:color-mix(in srgb,var(--lv-color,#fff) 7%,transparent);
+  border:1px solid color-mix(in srgb,var(--lv-color,#fff) 15%,transparent);
+}
+.tools-box{
+  background:rgba(255,255,255,0.025);
+  border:1px solid rgba(255,255,255,0.06);
+}
+.box-label{
+  font-family:var(--mono);font-size:10px;font-weight:700;
+  letter-spacing:0.1em;margin-bottom:8px;text-transform:uppercase;
+}
+.why-box .box-label{color:var(--lv-color,#fff)}
+.tools-box .box-label{color:var(--muted)}
+.why-text{
+  font-size:13.5px;line-height:1.6;
+  color:rgba(255,255,255,0.6);
+}
+.tools-row{display:flex;flex-wrap:wrap;gap:6px}
+.tool-pill{
+  font-family:var(--mono);font-size:11px;font-weight:600;
+  padding:4px 10px;border-radius:6px;
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(255,255,255,0.09);
+  color:rgba(255,255,255,0.65);
+  transition:all 0.2s ease;
+}
+.tool-pill:hover{
+  background:color-mix(in srgb,var(--lv-color,#fff) 12%,transparent);
+  color:var(--lv-color,#fff);
+  border-color:color-mix(in srgb,var(--lv-color,#fff) 20%,transparent);
+}
+
+/* ── QUICK WINS SECTION ── */
+.quickwins{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;
+  margin-top:0;
+}
+.qw-card{
+  background:var(--card-bg);border:1px solid var(--border);
+  border-radius:16px;padding:22px;
+  transition:transform 0.3s ease,border-color 0.3s ease;
+  opacity:0;transform:translateY(20px);
+  transition:opacity 0.5s ease,transform 0.5s ease,border-color 0.3s ease,box-shadow 0.3s ease;
+}
+.qw-card.visible{opacity:1;transform:translateY(0)}
+.qw-card:hover{
+  transform:translateY(-4px);
+  border-color:color-mix(in srgb,var(--qw-color,#fff) 30%,transparent);
+  box-shadow:0 12px 40px color-mix(in srgb,var(--qw-color,#fff) 10%,transparent);
+}
+.qw-icon{font-size:28px;margin-bottom:12px;display:block}
+.qw-title{font-size:16px;font-weight:700;margin-bottom:6px}
+.qw-text{font-size:13px;color:var(--muted);line-height:1.6}
+.qw-stat{
+  display:inline-flex;align-items:center;gap:6px;
+  margin-top:14px;font-family:var(--mono);font-size:11px;font-weight:700;
+  color:var(--qw-color,#84CC16);
+  background:color-mix(in srgb,var(--qw-color,#84CC16) 10%,transparent);
+  padding:4px 12px;border-radius:99px;
+  border:1px solid color-mix(in srgb,var(--qw-color,#84CC16) 20%,transparent);
+}
+
+/* ── TIMELINE (mini) ── */
+.mini-timeline{
+  position:relative;display:flex;flex-direction:column;gap:0;
+}
+.mini-tl-item{
+  display:flex;align-items:flex-start;gap:20px;padding-bottom:32px;
+  position:relative;
+  opacity:0;transform:translateX(-20px);
+  transition:opacity 0.5s ease,transform 0.5s ease;
+}
+.mini-tl-item.visible{opacity:1;transform:translateX(0)}
+.mini-tl-item::before{
+  content:'';
+  position:absolute;left:20px;top:44px;bottom:0;width:2px;
+  background:linear-gradient(to bottom,var(--tl-color,rgba(255,255,255,0.15)),transparent);
+  opacity:0.3;
+}
+.mini-tl-item:last-child::before{display:none}
+.tl-dot{
+  width:42px;height:42px;border-radius:12px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:20px;flex-shrink:0;
+  background:color-mix(in srgb,var(--tl-color,#fff) 10%,transparent);
+  border:1.5px solid color-mix(in srgb,var(--tl-color,#fff) 25%,transparent);
+}
+.tl-content{}
+.tl-week{
+  font-family:var(--mono);font-size:10px;font-weight:700;
+  color:var(--tl-color,#fff);letter-spacing:0.08em;margin-bottom:4px;
+}
+.tl-action-title{font-size:16px;font-weight:700;margin-bottom:4px}
+.tl-action-desc{font-size:13px;color:var(--muted);line-height:1.6}
+
+/* ── MYTH BUSTERS ── */
+.myths-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;
+}
+.myth-card{
+  border-radius:16px;padding:22px;
+  background:var(--card-bg);border:1px solid var(--border);
+  opacity:0;transform:translateY(20px);
+  transition:opacity 0.5s ease,transform 0.5s ease;
+}
+.myth-card.visible{opacity:1;transform:translateY(0)}
+.myth-label{
+  font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:0.1em;
+  margin-bottom:10px;
+}
+.myth-label.false-lbl{color:#EF4444}
+.myth-label.true-lbl{color:#22C55E}
+.myth-text{font-size:14px;line-height:1.6}
+.myth-text.crossed{
+  color:rgba(255,255,255,0.35);
+  text-decoration:line-through;text-decoration-color:rgba(239,68,68,0.5);
+}
+.myth-divider{
+  height:1px;background:var(--border);margin:14px 0;
+}
+
+/* ── FOOTER ── */
+footer{
+  position:relative;z-index:1;
+  border-top:1px solid var(--border);
+  padding:48px 24px;
+  text-align:center;
+}
+.footer-inner{max-width:700px;margin:0 auto}
+.footer-name{
+  font-size:22px;font-weight:800;letter-spacing:-0.5px;margin-bottom:6px;
+}
+.footer-role{font-size:14px;color:var(--muted);margin-bottom:20px}
+.footer-links{
+  display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:24px;
+}
+.footer-link{
+  font-size:13px;font-weight:600;color:var(--muted);
+  text-decoration:none;padding:7px 16px;border-radius:99px;
+  border:1px solid var(--border);
+  transition:all 0.2s ease;
+}
+.footer-link:hover{color:var(--text);border-color:rgba(255,255,255,0.2);background:rgba(255,255,255,0.04)}
+.footer-copy{font-size:12px;color:rgba(255,255,255,0.18);font-family:var(--mono)}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(24px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+/* ── TOAST ── */
+.toast{
+  position:fixed;bottom:28px;left:50%;
+  transform:translateX(-50%) translateY(80px);
+  background:rgba(15,22,32,0.96);
+  border:1px solid rgba(132,204,22,0.28);
+  color:var(--text);padding:13px 28px;border-radius:99px;
+  font-size:14px;font-weight:600;
+  z-index:9999;
+  transition:transform 0.4s cubic-bezier(0.34,1.56,0.64,1);
+  backdrop-filter:blur(20px);
+  box-shadow:0 12px 50px rgba(0,0,0,0.5);
+  pointer-events:none;
+}
+.toast.show{transform:translateX(-50%) translateY(0)}
+
+/* ── CONFETTI ── */
+#confetti-canvas{
+  position:fixed;inset:0;z-index:999;pointer-events:none;
+}
+
+/* ── MOBILE ── */
+@media(max-width:700px){
+  .nav-links{display:none}
+  .hero-title{letter-spacing:-2px}
+  .card-head{gap:10px}
+  .complete-toggle span:not(.toggle-circle){display:none}
+}
+</style>
+</head>
+<body>
+
+<canvas id="confetti-canvas"></canvas>
+<div class="toast" id="toast"></div>
+
+<!-- BACKGROUND -->
+<div id="bg-wrap">
+  <div class="orb orb1"></div>
+  <div class="orb orb2"></div>
+  <div class="orb orb3"></div>
+  <div class="grid-bg"></div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <div class="dot"></div>
+    New SEO Game 2026
+  </div>
+  <div class="nav-links">
+    <a class="nav-link" href="#levels">Levels</a>
+    <a class="nav-link" href="#quickwins">Quick Wins</a>
+    <a class="nav-link" href="#roadmap">Roadmap</a>
+    <a class="nav-link" href="#myths">Myths</a>
+    <a class="nav-link" href="https://shaloofsaleem.in" target="_blank" style="color:#84CC16;border-color:rgba(132,204,22,0.3)">Portfolio →</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-badge"><div class="live-dot"></div>SEARCH EVERYWHERE OPTIMISATION — 2026</div>
+  <h1 class="hero-title">
+    The Complete<br>
+    <span class="line2">"New SEO" Guide</span>
+  </h1>
+  <p class="hero-sub">
+    SEO isn't just Google anymore. In 2026, it's about being found <strong>everywhere</strong> your audience searches — AI tools, communities, platforms, and beyond.
+  </p>
+  <div class="hero-stats">
+    <div class="stat"><div class="stat-num">9</div><div class="stat-label">SEO LEVELS</div></div>
+    <div class="stat"><div class="stat-num">36</div><div class="stat-label">ACTION STEPS</div></div>
+    <div class="stat"><div class="stat-num">2026</div><div class="stat-label">STRATEGY</div></div>
+  </div>
+  <a class="hero-cta" href="#levels">
+    Start Playing <span class="cta-arrow">→</span>
+  </a>
+  <div class="scroll-hint">
+    <span>SCROLL TO EXPLORE</span>
+    <div class="scroll-arrow"><div class="scroll-dot"></div></div>
+  </div>
+</section>
+
+<!-- ── LEVELS ── -->
+<section id="levels">
+<div class="section-inner">
+  <div class="section-label">THE GAME</div>
+  <h2 class="section-title">9 Levels to SEO Mastery</h2>
+  <p class="section-desc">Every level builds on the last. Complete them in order for the best results — but start wherever you are right now.</p>
+
+  <!-- Progress Tracker -->
+  <div class="progress-tracker">
+    <div class="tracker-left">
+      <div class="tracker-title">🎮 Your Progress</div>
+      <div class="tracker-sub">Click the checkmarks to track your journey</div>
+    </div>
+    <div class="tracker-bar-wrap">
+      <div class="tracker-meta">
+        <span>Levels Completed</span>
+        <span class="tracker-count" id="tracker-count">0 / 9</span>
+      </div>
+      <div class="tracker-bar"><div class="tracker-fill" id="tracker-fill"></div></div>
+      <div class="tracker-badges" id="tracker-badges"></div>
+    </div>
+  </div>
+
+  <!-- Levels -->
+  <div class="levels-grid" id="levels-grid"></div>
+</div>
+</section>
+
+<!-- ── QUICK WINS ── -->
+<section id="quickwins" style="background:rgba(255,255,255,0.01);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+<div class="section-inner">
+  <div class="section-label">FASTEST RESULTS</div>
+  <h2 class="section-title">Quick Wins for New Websites</h2>
+  <p class="section-desc">Just launched? These 6 actions will get you results within the first 30 days.</p>
+  <div class="quickwins" id="quickwins-grid"></div>
+</div>
+</section>
+
+<!-- ── ROADMAP ── -->
+<section id="roadmap">
+<div class="section-inner">
+  <div class="section-label">WEEK BY WEEK</div>
+  <h2 class="section-title">Your First 90 Days</h2>
+  <p class="section-desc">A realistic timeline for implementing the New SEO strategy from day one.</p>
+  <div class="mini-timeline" id="timeline"></div>
+</div>
+</section>
+
+<!-- ── MYTHS ── -->
+<section id="myths" style="background:rgba(255,255,255,0.01);border-top:1px solid var(--border)">
+<div class="section-inner">
+  <div class="section-label">COMMON MISTAKES</div>
+  <h2 class="section-title">SEO Myths Busted in 2026</h2>
+  <p class="section-desc">Outdated beliefs that are holding your website back right now.</p>
+  <div class="myths-grid" id="myths-grid"></div>
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-name">Shaloof Saleem</div>
+    <div class="footer-role">WordPress Developer · SEO & Performance Specialist · Dubai, UAE</div>
+    <div class="footer-links">
+      <a class="footer-link" href="https://shaloofsaleem.in" target="_blank">🌐 Portfolio</a>
+      <a class="footer-link" href="mailto:shaloofsaleem@gmail.com">✉️ Email</a>
+      <a class="footer-link" href="https://linkedin.com/in/shaloof-saleem" target="_blank">💼 LinkedIn</a>
+      <a class="footer-link" href="https://github.com/shaloofsaleem" target="_blank">💻 GitHub</a>
+    </div>
+    <div class="footer-copy">© 2026 Shaloof Saleem · Original SEO Strategy Guide · Dubai, UAE</div>
+  </div>
+</footer>
+
+<script>
+// ─── DATA ─────────────────────────────────────────────────────────────────
+const levels = [
+  {
+    id:1,emoji:"🔧",title:"Traditional SEO",tag:"FOUNDATION",color:"#3B82F6",
+    tagline:"The bedrock of every successful website — skip this and everything else fails.",
+    what:`Traditional SEO is the starting point for any website. It covers the technical health of your site, the keywords you target, and the authority you build through backlinks. Without a solid foundation here, all other SEO efforts are wasted. Google still processes over 8 billion searches per day — mastering the basics gives you access to that enormous traffic pool.`,
+    steps:[
+      "Audit your site for broken links, crawl errors, duplicate content & missing pages",
+      "Research keywords using Google Search Console, Ahrefs or Semrush — target low-competition, high-intent terms first",
+      "Optimise every page title, meta description, H1 tag and URL structure",
+      "Improve page speed: compress images, enable caching, use a CDN, minify CSS/JS",
+      "Build quality backlinks through PR, guest posts, digital partnerships and HARO",
+      "Set up Google Search Console and submit your XML sitemap"
+    ],
+    why:"Google still drives 90%+ of organic traffic worldwide. A technically sound, well-optimised site with good backlinks is your single most important SEO investment.",
+    tools:["Google Search Console","Screaming Frog","Ahrefs","Yoast SEO","PageSpeed Insights","Rank Math"]
+  },
+  {
+    id:2,emoji:"🤖",title:"AI Search Optimisation",tag:"NEW IN 2026",color:"#F97316",
+    tagline:"ChatGPT, Perplexity & Google AI Overviews now answer questions before users click anything.",
+    what:`AI search is the biggest shift in SEO since mobile. Tools like ChatGPT, Perplexity, and Google's AI Overviews now synthesise answers directly from web content — meaning users get answers without visiting your site. To win here, you need to become the source these AI tools pull from. Format, structure and authority all matter differently in AI search than in traditional SEO.`,
+    steps:[
+      "Write all content in clear Q&A format — AI tools love structured, direct answers",
+      "Add FAQ sections to every major page to target AI Overview snippets",
+      "Use H2/H3 headings, bullet lists and short paragraphs — easy for machines to parse",
+      "Implement JSON-LD schema markup for articles, products, FAQs and how-tos",
+      "Test your brand and content in ChatGPT, Perplexity and Google AI Overviews weekly",
+      "Build external citations — AI tools trust brands mentioned by other trusted sources"
+    ],
+    why:"AI Overviews now appear on 30–40% of Google searches. If you're not formatted for AI, you're invisible to a massive chunk of modern searchers.",
+    tools:["ChatGPT","Perplexity","Google AI Overviews","Schema.org","AlsoAsked","Surfer SEO"]
+  },
+  {
+    id:3,emoji:"💰",title:"Paid Search Visibility",tag:"ACCELERATOR",color:"#22C55E",
+    tagline:"Instant traffic while organic rankings build — the smartest shortcut for new websites.",
+    what:`Organic SEO takes 6–12 months to show results. Paid search fills that gap immediately. Running targeted ads for high-intent keywords puts your brand in front of ready-to-buy customers from day one. More importantly, paid data (click-through rates, conversion rates, which keywords convert) informs your organic strategy — making your entire SEO effort smarter and faster.`,
+    steps:[
+      "Start with Google Search Ads targeting 5–10 high-intent, bottom-of-funnel keywords",
+      "Add negative keywords to filter irrelevant traffic and reduce wasted spend",
+      "Run YouTube Search Ads for video content and to capture visual searchers",
+      "Test Microsoft Bing Ads — often 30–40% cheaper than Google with less competition",
+      "Track conversions properly with GA4 + Google Tag Manager before spending at scale",
+      "Use paid data to identify which organic keywords to prioritise next"
+    ],
+    why:"Paid + organic together gives you 2x more SERP real estate. First place organic plus paid ads = nearly the entire top of the page.",
+    tools:["Google Ads","Microsoft Ads","YouTube Ads","GA4","Google Tag Manager","Looker Studio"]
+  },
+  {
+    id:4,emoji:"🧠",title:"LLM Answer SEO",tag:"ADVANCED",color:"#A855F7",
+    tagline:"Get recommended by ChatGPT, Claude, Gemini & Perplexity when users ask questions in your niche.",
+    what:`Large Language Models (LLMs) are trained on internet content and learn which brands and sources are authoritative through repetition and citation. When a user asks an AI tool a question, the tool recommends brands it has "seen" cited, discussed and referenced across many sources. LLM Answer SEO is about making sure your brand is one of those references — through consistent, authoritative publishing and external validation.`,
+    steps:[
+      "Publish comprehensive, well-researched long-form content (2000+ words) on core topics",
+      "Build a content hub: pillar pages + cluster articles covering every angle of your niche",
+      "Get quoted or cited in industry publications, blogs and news sites",
+      "Create original research, data studies or surveys that others will reference",
+      "Use tools like Mentions.com or Brand24 to monitor where your brand appears in AI answers",
+      "Update content regularly — LLMs prefer fresh, current information"
+    ],
+    why:"LLMs cite brands they have repeatedly encountered across the web as authoritative sources. More citations = more AI recommendations = traffic that bypasses traditional search entirely.",
+    tools:["Brand24","Mentions.com","BuzzSumo","Clearscope","MarketMuse","ChatGPT"]
+  },
+  {
+    id:5,emoji:"⭐",title:"Brand Authority SEO",tag:"TRUST BUILDER",color:"#EF4444",
+    tagline:"Your brand name itself is now a Google ranking signal — the more people search for you, the higher you rank.",
+    what:`Brand authority SEO is about getting your name recognised, mentioned and searched across the web — even without traditional backlinks. Google increasingly weighs branded search volume and brand mentions as trust signals. When thousands of people search for your brand directly, Google interprets this as a sign of authority and pushes your pages higher. This also affects how AI tools perceive your brand's credibility.`,
+    steps:[
+      "Set up Google Alerts and Brand24 to track every mention of your brand online",
+      "Reach out to bloggers and journalists to include your brand in roundup articles",
+      "Actively collect and respond to reviews on Google Business, Trustpilot and Clutch",
+      "Submit your brand to relevant industry directories and association listings",
+      "Create consistent brand assets: logo, tone of voice, colour palette — recognition builds trust",
+      "Run awareness campaigns (social, PR, podcast appearances) to grow branded searches"
+    ],
+    why:"Google's Navboost algorithm rewards sites where users search for the brand directly. More branded searches = higher organic rankings across all your pages.",
+    tools:["Google Alerts","Brand24","Trustpilot","Google Business Profile","Ahrefs","Semrush"]
+  },
+  {
+    id:6,emoji:"👥",title:"Community SEO",tag:"ORGANIC REACH",color:"#06B6D4",
+    tagline:"Reddit threads and Quora answers rank on page 1 of Google — and your expertise belongs there.",
+    what:`Community platforms like Reddit, Quora, LinkedIn Groups, Discord and Slack communities have become major search ranking factors. Google actively surfaces Reddit and Quora content in its results because real people find it genuinely helpful. By contributing valuable expertise to these platforms, you simultaneously build reputation with real humans and gain organic search visibility — all without needing a single backlink.`,
+    steps:[
+      "Find 5–10 active Reddit subreddits in your niche and answer questions genuinely — no spam",
+      "Set up Quora answers for the top 20 questions in your industry",
+      "Join relevant LinkedIn Groups, Discord servers and Slack communities",
+      "Contribute value for 30 days before ever mentioning your brand or website",
+      "Bookmark threads where your expertise could help and return to add value regularly",
+      "Build a reputation as the go-to expert — referrals and traffic follow naturally"
+    ],
+    why:"Reddit content now appears in 15–20% of Google searches. Community trust is the hardest form of SEO to fake — and the most valuable when earned honestly.",
+    tools:["Reddit","Quora","LinkedIn Groups","Discord","Slack","Sparktoro"]
+  },
+  {
+    id:7,emoji:"🪂",title:"Parasite SEO",tag:"SHORTCUT",color:"#F59E0B",
+    tagline:"New websites take months to rank — borrow authority from established platforms to get there in weeks.",
+    what:`Parasite SEO (also called platform SEO) is the strategy of publishing your content on high-authority platforms that already rank well in Google. Instead of waiting for your own domain to build authority, you leverage sites like LinkedIn, Medium, Substack, YouTube and Wikipedia to rank for keywords immediately. This is especially powerful for new websites that don't yet have the domain authority to rank competitively.`,
+    steps:[
+      "Repurpose your best blog content as LinkedIn Articles — they often outrank your own site",
+      "Publish in-depth guides on Medium targeting keywords your site can't yet rank for",
+      "Start a Substack or beehiiv newsletter — newsletters now rank directly in Google",
+      "Submit guest posts to high-authority industry websites (DA 50+)",
+      "Create YouTube videos for written-search queries — YouTube ranks in Google search results",
+      "Add value to Wikipedia where your expertise is relevant (careful, follow their guidelines)"
+    ],
+    why:"A well-optimised LinkedIn article on a high-competition keyword can outrank dedicated websites with years of history. Use big platforms as your launchpad.",
+    tools:["LinkedIn Articles","Medium","Substack","beehiiv","YouTube","Guest posting outreach"]
+  },
+  {
+    id:8,emoji:"📱",title:"Platform-Specific SEO",tag:"MULTI-CHANNEL",color:"#EC4899",
+    tagline:"Each platform is its own search engine — optimise for where your audience actually searches.",
+    what:`In 2026, search behaviour is fragmented across multiple platforms. Over 40% of Gen Z start product searches on TikTok. Millions search for products on Amazon before Google. Developers search on GitHub. Designers search on Pinterest. Each platform has its own unique algorithm, ranking factors and optimisation techniques. Mastering the platforms your specific audience uses means your content gets found — wherever they're looking.`,
+    steps:[
+      "Amazon sellers: optimise product titles, bullet points, backend keywords and A+ content",
+      "YouTube: research keywords in YouTube autocomplete, optimise video titles, descriptions and chapters",
+      "TikTok: post consistently, use trending sounds, optimise captions with keywords, prioritise watch time",
+      "App Store (iOS/Android): A/B test app store screenshots, titles and keyword fields",
+      "Pinterest: create vertical graphics with keyword-rich descriptions for evergreen discovery",
+      "Identify which 2–3 platforms your audience uses most — dominate those before expanding"
+    ],
+    why:"42% of Gen Z use TikTok as their primary search engine. If you're only optimising for Google, you're missing the next generation of searchers entirely.",
+    tools:["Amazon Seller Central","TubeBuddy","VidIQ","TikTok Analytics","App Store Connect","Pinterest Analytics"]
+  },
+  {
+    id:9,emoji:"🏆",title:"Topic Domination",tag:"FINAL BOSS",color:"#84CC16",
+    tagline:"When people think of your topic — your brand is the first name that comes to mind, everywhere.",
+    what:`Topic domination is the endgame of SEO. It's the state where your brand owns the conversation across every channel simultaneously — Google search, AI tools, YouTube, Reddit, LinkedIn, podcasts, newsletters and industry publications. You're not just ranking for keywords; you're the definitive source everyone references, quotes and recommends. This level is built on the foundation of all 8 previous levels working together as a compounding system.`,
+    steps:[
+      "Map every subtopic and question in your niche — create content that answers all of them",
+      "Build a content calendar publishing across all channels consistently (not just your blog)",
+      "Create a flagship piece of content in your niche (the definitive guide everyone links to)",
+      "Appear on podcasts, webinars and industry events as a regular expert voice",
+      "Build an email newsletter as your owned audience — independent of any platform algorithm",
+      "Monitor your share of voice using Semrush or Ahrefs and grow it month over month"
+    ],
+    why:"Topic authority compounds every month. Once you own a topic, every new content piece gets indexed faster, ranks higher and generates more traffic — permanently.",
+    tools:["Semrush","Ahrefs","Buzzsprout","ConvertKit","Notion (content planning)","Brand24"]
+  }
+];
+
+const quickwins = [
+  {icon:"⚡",title:"Fix Core Web Vitals",text:"Use Google PageSpeed Insights to identify and fix speed issues. A fast site gets better rankings immediately and reduces bounce rate.",stat:"↑ Rankings in 2–4 weeks",color:"#3B82F6"},
+  {icon:"🔑",title:"Target Long-Tail Keywords",text:"New sites can't rank for competitive terms yet. Find specific 4–6 word phrases with low competition using Ahrefs or Google Suggest.",stat:"First rankings in 30 days",color:"#22C55E"},
+  {icon:"📋",title:"Claim Google Business Profile",text:"For any local or service business, Google Business Profile is free and often ranks on page 1 within days of being verified.",stat:"Local visibility instantly",color:"#F97316"},
+  {icon:"🔗",title:"Fix Broken Internal Links",text:"Use Screaming Frog (free up to 500 URLs) to find and fix all broken internal links. This alone can boost crawlability significantly.",stat:"Crawl improvement < 1 week",color:"#A855F7"},
+  {icon:"📝",title:"Write One Deep Article",text:"A single comprehensive 3000-word article targeting one specific question can drive consistent traffic for years. Quality beats quantity at this stage.",stat:"Organic traffic in 60–90 days",color:"#EF4444"},
+  {icon:"🤖",title:"Add FAQ Schema",text:"Add FAQ structured data to your top 5 pages. This often triggers rich results in Google AND gets your content pulled into AI Overviews.",stat:"AI visibility in 2–3 weeks",color:"#84CC16"}
+];
+
+const timeline = [
+  {week:"WEEK 1–2",emoji:"🔧",title:"Technical Audit & Fix",desc:"Run a full site audit with Screaming Frog. Fix broken links, missing meta tags, slow pages and crawl errors. Set up GA4 and Google Search Console.",color:"#3B82F6"},
+  {week:"WEEK 3–4",emoji:"🔑",title:"Keyword Research & Content Plan",desc:"Identify 20 target keywords. Write your first 3 optimised blog posts targeting low-competition queries. Optimise all existing page titles and descriptions.",color:"#22C55E"},
+  {week:"MONTH 2",emoji:"🔗",title:"Link Building Begins",desc:"Start outreach for 5 quality backlinks. Publish 4 more articles. Set up your Google Business Profile if applicable. Begin posting in relevant Reddit communities.",color:"#F97316"},
+  {week:"MONTH 2–3",emoji:"🤖",title:"AI & Schema Optimisation",desc:"Add FAQ schema to top pages. Reformat key articles for AI parsing (clear headings, Q&A format). Test how your brand appears in ChatGPT and Perplexity.",color:"#A855F7"},
+  {week:"MONTH 3",emoji:"📱",title:"Expand to Platforms",desc:"Launch LinkedIn Articles or YouTube channel. Start building presence on 1–2 platforms where your audience spends time. Consistency here is more important than volume.",color:"#EC4899"},
+  {week:"ONGOING",emoji:"🏆",title:"Measure, Optimise & Scale",desc:"Review Search Console data monthly. Update top-performing articles. Scale what's working. Add new content consistently. Track brand mentions and citations.",color:"#84CC16"}
+];
+
+const myths = [
+  {
+    myth:"You need to post new content every day to rank.",
+    truth:"Frequency doesn't matter — quality does. One 3000-word authoritative article beats thirty thin daily posts. Google rewards depth, relevance and expertise.",
+    falseLabel:"❌ MYTH",trueLabel:"✅ TRUTH"
+  },
+  {
+    myth:"More backlinks always means better rankings.",
+    truth:"Ten backlinks from relevant, trusted websites in your niche are worth more than 1000 links from unrelated or spammy sites. Quality and relevance always beat quantity.",
+    falseLabel:"❌ MYTH",trueLabel:"✅ TRUTH"
+  },
+  {
+    myth:"SEO takes 12 months before you see any results.",
+    truth:"Long-tail keywords, local SEO and technical fixes can deliver measurable results within 2–6 weeks. The 12-month myth applies only to competitive head terms.",
+    falseLabel:"❌ MYTH",trueLabel:"✅ TRUTH"
+  },
+  {
+    myth:"AI will replace Google search — SEO is dying.",
+    truth:"AI search is a new channel, not a replacement. Both Google and AI tools are growing simultaneously. Smart SEOs are optimising for both. The opportunity is bigger than ever.",
+    falseLabel:"❌ MYTH",trueLabel:"✅ TRUTH"
+  },
+  {
+    myth:"Keyword stuffing still helps rankings.",
+    truth:"Keyword stuffing actively hurts your rankings in 2026. Google's NLP understands intent and context. Write naturally for humans — use keywords where they fit logically.",
+    falseLabel:"❌ MYTH",trueLabel:"✅ TRUTH"
+  },
+  {
+    myth:"Social media followers directly improve Google rankings.",
+    truth:"Social signals aren't a direct Google ranking factor. However, social reach drives brand searches, backlinks and traffic — which DO affect rankings indirectly.",
+    falseLabel:"❌ MYTH",trueLabel:"✅ TRUTH"
+  }
+];
+
+// ─── BUILD LEVELS ──────────────────────────────────────────────────────────
+const completed = new Set();
+const grid = document.getElementById('levels-grid');
+const badgesEl = document.getElementById('tracker-badges');
+
+// Build badge pills
+levels.forEach(lv => {
+  const b = document.createElement('div');
+  b.className = 'lvl-badge';
+  b.id = `badge-${lv.id}`;
+  b.textContent = `L${lv.id}`;
+  b.title = lv.title;
+  badgesEl.appendChild(b);
+});
+
+levels.forEach((lv, i) => {
+  const item = document.createElement('div');
+  item.className = 'level-item';
+  item.style.transitionDelay = `${i * 0.05}s`;
+
+  item.innerHTML = `
+    <div class="timeline-col">
+      <div class="tl-num" style="--lv-color:${lv.color}">${lv.emoji}</div>
+      ${i < levels.length-1 ? `<div class="tl-line" style="--lv-color:${lv.color}"></div>` : ''}
+    </div>
+    <div class="lv-card" id="lvcard-${lv.id}" style="--lv-color:${lv.color}">
+      <div class="card-accent"></div>
+      <div class="card-head">
+        <div class="head-left">
+          <div class="head-meta">
+            <span class="lv-num-label">LEVEL ${String(lv.id).padStart(2,'0')}</span>
+            <span class="lv-tag">${lv.tag}</span>
+          </div>
+          <div class="card-title-row">
+            <span class="card-emoji">${lv.emoji}</span>
+            <h3 class="card-title">${lv.title}</h3>
+          </div>
+          <div class="card-tagline">${lv.tagline}</div>
+        </div>
+        <button class="complete-toggle" id="ctoggle-${lv.id}" onclick="toggleDone(${lv.id})">
+          <div class="toggle-circle" id="tcircle-${lv.id}">✓</div>
+          <span>Mark Done</span>
+        </button>
+      </div>
+      <div class="card-body">
+        <div class="what-section">
+          <div class="sub-label">WHAT IS IT?</div>
+          <p class="what-text">${lv.what}</p>
+        </div>
+        <div>
+          <div class="sub-label">ACTION STEPS</div>
+          <div class="steps-list">
+            ${lv.steps.map(s=>`
+              <div class="step-item" style="--lv-color:${lv.color}">
+                <span class="step-arrow">→</span>
+                <span>${s}</span>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <div class="why-box" style="--lv-color:${lv.color}">
+          <div class="box-label">💡 WHY IT MATTERS</div>
+          <div class="why-text">${lv.why}</div>
+        </div>
+        <div class="tools-box" style="--lv-color:${lv.color}">
+          <div class="box-label">🛠️ TOOLS TO USE</div>
+          <div class="tools-row">
+            ${lv.tools.map(t=>`<span class="tool-pill" style="--lv-color:${lv.color}">${t}</span>`).join('')}
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+  grid.appendChild(item);
+});
+
+// ─── TOGGLE DONE ───────────────────────────────────────────────────────────
+function toggleDone(id) {
+  const card = document.getElementById(`lvcard-${id}`);
+  const toggle = document.getElementById(`ctoggle-${id}`);
+  const badge = document.getElementById(`badge-${id}`);
+
+  if (completed.has(id)) {
+    completed.delete(id);
+    card.classList.remove('done-card');
+    toggle.classList.remove('toggled');
+    badge.classList.remove('complete');
+    showToast(`Level ${id} marked incomplete`);
+  } else {
+    completed.add(id);
+    card.classList.add('done-card');
+    toggle.classList.add('toggled');
+    badge.classList.add('complete');
+    showToast(`🎉 Level ${id}: ${levels[id-1].title} — Complete!`);
+    if (completed.size === 9) {
+      setTimeout(fireConfetti, 400);
+      setTimeout(() => showToast('🏆 All 9 levels complete! You are an SEO Master!'), 800);
+    }
+  }
+  updateProgress();
+}
+
+function updateProgress() {
+  const n = completed.size;
+  document.getElementById('tracker-count').textContent = `${n} / 9`;
+  document.getElementById('tracker-fill').style.width = `${(n/9)*100}%`;
+}
+
+// ─── QUICK WINS ─────────────────────────────────────────────────────────────
+const qwGrid = document.getElementById('quickwins-grid');
+quickwins.forEach((q,i) => {
+  const card = document.createElement('div');
+  card.className = 'qw-card';
+  card.style.setProperty('--qw-color', q.color);
+  card.style.transitionDelay = `${i*0.07}s`;
+  card.innerHTML = `
+    <span class="qw-icon">${q.icon}</span>
+    <div class="qw-title">${q.title}</div>
+    <div class="qw-text">${q.text}</div>
+    <div class="qw-stat">⚡ ${q.stat}</div>
+  `;
+  qwGrid.appendChild(card);
+});
+
+// ─── TIMELINE ────────────────────────────────────────────────────────────────
+const tlEl = document.getElementById('timeline');
+timeline.forEach((t,i) => {
+  const item = document.createElement('div');
+  item.className = 'mini-tl-item';
+  item.style.setProperty('--tl-color', t.color);
+  item.style.transitionDelay = `${i*0.08}s`;
+  item.innerHTML = `
+    <div class="tl-dot" style="--tl-color:${t.color}">${t.emoji}</div>
+    <div class="tl-content">
+      <div class="tl-week">${t.week}</div>
+      <div class="tl-action-title">${t.title}</div>
+      <div class="tl-action-desc">${t.desc}</div>
+    </div>
+  `;
+  tlEl.appendChild(item);
+});
+
+// ─── MYTHS ───────────────────────────────────────────────────────────────────
+const mythsGrid = document.getElementById('myths-grid');
+myths.forEach((m,i) => {
+  const card = document.createElement('div');
+  card.className = 'myth-card';
+  card.style.transitionDelay = `${i*0.06}s`;
+  card.innerHTML = `
+    <div class="myth-label false-lbl">${m.falseLabel} — COMMON BELIEF</div>
+    <div class="myth-text crossed">${m.myth}</div>
+    <div class="myth-divider"></div>
+    <div class="myth-label true-lbl">${m.trueLabel} — REALITY IN 2026</div>
+    <div class="myth-text">${m.truth}</div>
+  `;
+  mythsGrid.appendChild(card);
+});
+
+// ─── INTERSECTION OBSERVER ────────────────────────────────────────────────
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      io.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.08 });
+
+document.querySelectorAll('.level-item,.qw-card,.mini-tl-item,.myth-card').forEach(el => io.observe(el));
+
+// ─── TOAST ───────────────────────────────────────────────────────────────────
+let toastTimer;
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+// ─── CONFETTI ────────────────────────────────────────────────────────────────
+function fireConfetti() {
+  const cc = document.getElementById('confetti-canvas');
+  cc.width = window.innerWidth; cc.height = window.innerHeight;
+  const ctx = cc.getContext('2d');
+  const colors = ['#84CC16','#3B82F6','#F97316','#A855F7','#EF4444','#22C55E','#F59E0B','#06B6D4','#EC4899'];
+  const bits = Array.from({length:180}, () => ({
+    x: Math.random()*cc.width, y: -20,
+    vx: (Math.random()-0.5)*6,
+    vy: Math.random()*6+2,
+    rot: Math.random()*360, vr: (Math.random()-0.5)*10,
+    w: Math.random()*12+4, h: Math.random()*7+3,
+    color: colors[Math.floor(Math.random()*colors.length)]
+  }));
+  let f=0;
+  (function tick(){
+    ctx.clearRect(0,0,cc.width,cc.height);
+    bits.forEach(b=>{
+      b.x+=b.vx; b.y+=b.vy; b.rot+=b.vr; b.vy+=0.1;
+      ctx.save(); ctx.translate(b.x,b.y); ctx.rotate(b.rot*Math.PI/180);
+      ctx.fillStyle=b.color; ctx.globalAlpha=Math.max(0,1-(f/140));
+      ctx.fillRect(-b.w/2,-b.h/2,b.w,b.h);
+      ctx.restore();
+    });
+    f++;
+    if(f<150) requestAnimationFrame(tick);
+    else ctx.clearRect(0,0,cc.width,cc.height);
+  })();
+}
+
+// ─── ORB SUBTLE MOVEMENT ─────────────────────────────────────────────────────
+let t=0;
+const orb3 = document.querySelector('.orb3');
+(function animOrb(){
+  t+=0.003;
+  if(orb3){
+    orb3.style.transform = `translate(calc(-50% + ${Math.sin(t)*30}px), calc(-50% + ${Math.cos(t*0.7)*20}px))`;
+  }
+  requestAnimationFrame(animOrb);
+})();
+</script>
+</body>
+</html>
